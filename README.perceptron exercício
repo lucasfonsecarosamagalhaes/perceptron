@@ -1,0 +1,50 @@
+perceptron exercício
+
+# Importando biblioteca
+from sklearn.linear_model import Perceptron
+
+# Dados de entrada
+X = [[0, 0], [0, 1], [1, 0], [1, 1]]
+
+# Saídas desejadas
+Y = [0, 1, 1, 1]
+
+# Criando e treinando o perceptron
+modelo = Perceptron()
+modelo.fit(X, Y)
+
+# Testando o modelo
+print("Previsões:")
+testes = [[0,0], [0,1], [1,0], [1,1]]
+for teste in testes:
+  previsao = modelo.predict([teste])
+  print(f"Nuvens: {teste[0]}, Previsão Chuva: {teste[1]} => Levar Guarda-chuva? {'Sim' if previsao[0] == 1 else 'Não'}")
+
+# Exercício 2 - Decisão de Ir ao Parque
+X_parque = [[0, 0, 0], [0, 1, 0], [1, 0, 0], [1, 1, 0],
+            [0, 0, 1], [0, 1, 1], [1, 0, 1], [1, 1, 1]]
+Y_parque = [0, 1, 1, 1, 0, 0, 0, 0]
+
+modelo_parque = Perceptron()
+modelo_parque.fit(X_parque, Y_parque)
+
+print("Previsões para ir ao parque:")
+testes_parque = X_parque
+for teste in testes_parque:
+    previsao = modelo_parque.predict([teste])
+    print(f"Ensolarado: {teste[0]}, Final de Semana: {teste[1]}, Parque Lotado: {teste[2]} => Ir ao Parque? {'Sim' if previsao[0] == 1 else 'Não'}")
+
+# Exercício 3 - Decisão sobre Comer Fora ou Cozinhar em Casa
+X_comida = [[0, 1, 1, 1], [1, 0, 1, 1], [1, 1, 0, 1], [0, 0, 1, 0],
+            [1, 1, 1, 1], [0, 1, 0, 0], [1, 0, 0, 1], [0, 0, 0, 1]]
+Y_comida = [0, 1, 0, 1, 1, 0, 0, 0]
+
+modelo_comida = Perceptron()
+modelo_comida.fit(X_comida, Y_comida)
+
+print("\nPrevisões para comer fora:")
+testes_comida = X_comida
+for teste in testes_comida:
+    previsao = modelo_comida.predict([teste])
+    print(f"Cansado: {teste[0]}, Ingredientes em casa: {teste[1]}, Restaurante aberto: {teste[2]}, Pagamento recente: {teste[3]} => Comer Fora? {'Sim' if previsao[0] == 1 else 'Não'}")
+
